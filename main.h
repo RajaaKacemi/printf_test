@@ -16,7 +16,7 @@ typedef struct format
 }fmt;
 
 int _printf(const char *format, ...);
-int _strlen(char *s);
+int _strlen(const char *s);
 int _putchar(char c);
 
 /* functions associated to formats*/
@@ -27,6 +27,6 @@ int fmt_string(va_list);
 int fmt_percent(va_list);
 
 /* pointer function to choose the right function */
-int (*get_fmt_func(const char *format))(va_list);
+int (*get_fmt_func(const char *format, int j))(va_list);
 
 #endif

@@ -5,14 +5,15 @@
   * @argList: list of arguments
   * Return: 1 mean one char printed.
  */
-
+int len = 0;
 int fmt_char(va_list argList)
 {
-	char c;
+	unsigned char c;
 
-	c = va_arg(argList, int);
+	c = (int)va_arg(argList, int);
 	_putchar(c);
-	return (1);
+	len++;
+	return (len);
 }
 /**
   * fmt_string - print a string
@@ -21,19 +22,18 @@ int fmt_char(va_list argList)
  */
 int fmt_string(va_list argList)
 {
-	char *p;
+	const char *p;
 	int lenStr;
 
-	p = va_arg(argList, char*);
-	lenStr = _strlen(p);
+	p = (const char*)va_arg(argList, const char*);
 
 	while (*p != '\0')
 	{
-		_putchar(*p);
-		p++;
+		_putchar(*p++);
+		lenStr++;
 	}
-	lenStr = lenStr + 2;
-	return (lenStr);
+	len = lenStr + 2;
+	return (len);
 }
 
 /**
@@ -45,7 +45,8 @@ int fmt_string(va_list argList)
 int fmt_percent(__attribute__((unused)) va_list argList)
 {
 	_putchar('%');
-	return (1);
+	len++;
+	return (len);
 }
 
 /**
@@ -55,9 +56,9 @@ int fmt_percent(__attribute__((unused)) va_list argList)
  */
 int fmt_integer(va_list argList)
 {
-	int nbr, q, len = 0;
+	int nbr, q;
 
-	nbr = va_arg(argList, int);
+	nbr = (int)va_arg(argList, int);
 	if (nbr < 0)
 	{
 		len++;
@@ -71,6 +72,4 @@ int fmt_integer(va_list argList)
 	}
 	return (len);
 }
-
-
 	

@@ -10,15 +10,32 @@
 int _printf(const char *format, ...)
 {
 	va_list ListArgs;
-	int NumChar;
+	int NumChar, i, len = 0;
 	int (*fmt_func)(va_list);
+	char currentChar;
 
-	fmt_func = get_fmt_func(format);
+	len = _strlen(format);
 
-	if(!fmt_func)
-		return (0);
-
-	NumChar = fmt_func(ListArgs);
+	for(i = 0; i < len; i++)
+	{
+		if (format[i] == '%')
+		{
+			fmt_func = get_fmt_func(format, (i + 1));
+			if (fmt_func == NULL)
+			{
+				currentChar = format[i + 1];
+				_putchar(currentChar);
+				NumChar++;
+			}
+			NumChar += fmt_func(ListArgs); /*return number of characters and print it*/
+		}
+		else
+		{
+			currentChar = format[i];
+			_putchar(currentChar);
+			NumChar++;
+		}
+	}
 	va_end(ListArgs);
 	return (NumChar);
 }

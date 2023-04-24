@@ -9,23 +9,15 @@
  */
 int main(void)
 {
-    int len;
-    unsigned int ui;
-    void *addr;
-
-    len = _printf("Let's try to printf a simple sentence.\n");
-    ui = (unsigned int)INT_MAX + 1024;
-    _printf("%d", 10);
-	addr = (void *)0x7ffe637541f0;
+  int len;
+	
+  len = _printf("Let's try to printf a simple sentence.\n");
+  len += _printf("Unknown:[%r]\n");
+   len +=  _printf("yy\n");
+   printf("%d\n", len);
     _printf("Negative:[%d]\n", -762534);
-    _printf("Unsigned:[%u]\n", ui);
-    _printf("Unsigned octal:[%o]\n", ui);
-    _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-    _printf("Character:[%c]\n", 'H');
-    _printf("String:[%s]\n", "I am a string !");
-    _printf("Address:[%p]\n", addr);
-    len = _printf("Percent:[%%]\n");
+    len += _printf("Percent:[%%]\n");
+	printf("%d\n", len);
     _printf("Len:[%d]\n", len);
-    _printf("Unknown:[%r]\n");
     return (0);
 }

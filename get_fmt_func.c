@@ -6,7 +6,7 @@
   * Reture: a pointer to function
  */
 
-int (*get_fmt_func(const char *format))(va_list)
+int (*get_fmt_func(const char *format, int j))(va_list)
 {
 	fmt fmts[] = {
 		{"c", fmt_char},
@@ -21,7 +21,7 @@ int (*get_fmt_func(const char *format))(va_list)
 
 	while (i < 5)
 	{
-		if (format && fmts[i].fmt[0] == format[1])
+		if (format && fmts[i].fmt[0] == format[j])
 			return (fmts[i].f);
 		i++;
 	}

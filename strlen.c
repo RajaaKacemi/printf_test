@@ -4,7 +4,7 @@
  * @s: String
  * Return: Length @L.
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int L = 0;
 
